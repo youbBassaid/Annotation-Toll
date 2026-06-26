@@ -38,26 +38,30 @@ A production-ready PySide6 desktop application specifically designed for preproc
 │ annotation_io.py   │    │  video_processor.py              │
 │ (XML read/write)   │    │  skeleton_extractor.py           │
 └────────────────────┘    └──────────────────────────────────┘
-Why MediaPipe Pose?
-Model	Accuracy	Speed	Install	Qt Compat
-OpenPose	★★★★★	★★★	★★ (C++)	★★
-MMPose	★★★★★	★★★	★★	★★
-MoveNet	★★★★	★★★★★	★★★★	★★★★
-🚀 MediaPipe	★★★★	★★★★★	★★★★★	★★★★★
+```
+
+### Why MediaPipe Pose?
+
+| Model | Accuracy | Speed | Install | Qt Compat |
+|-------|----------|-------|---------|-----------|
+| OpenPose | ★★★★★ | ★★★ | ★★ (C++) | ★★ |
+| MMPose | ★★★★★ | ★★★ | ★★ | ★★ |
+| MoveNet | ★★★★ | ★★★★★ | ★★★★ | ★★★★ |
+| **🚀 MediaPipe** | ★★★★ | ★★★★★ | ★★★★★ | ★★★★★ |
+
 MediaPipe Pose is selected for this stack because:
 
-Zero System Dependencies: Simple pip install mediapipe deployment.
+- **Zero System Dependencies:** Simple `pip install mediapipe` deployment.
+- **CPU Optimized Performance:** Real-time extraction (30+ FPS) on standard computer processors.
+- **Rich Keypoint Matrix:** 33 anatomically meaningful landmarks mapping coordinates alongside visibility metrics.
+- **Clinical Focus:** Captures critical upper/lower limb tracking landmarks vital for kinetic autism movement recognition profiles (wrists, elbows, shoulders, etc.).
+- **Cross-Platform Delivery:** Flawless runtime configurations across Windows, macOS, and Linux targets.
 
-CPU Optimized Performance: Real-time extraction (30+ FPS) on standard computer processors.
+---
 
-Rich Keypoint Matrix: 33 anatomically meaningful landmarks mapping coordinates alongside visibility metrics.
+## 📁 Project Structure
 
-Clinical Focus: Captures critical upper/lower limb tracking landmarks vital for kinetic autism movement recognition profiles (wrists, elbows, shoulders, etc.).
-
-Cross-Platform Delivery: Flawless runtime configurations across Windows, macOS, and Linux targets.
-
-📁 Project Structure
-Plaintext
+```text
 autism_annotation_tool/
 ├── main.py                   # Main execution entry-point
 ├── requirements.txt          # Framework dependency definitions
@@ -78,11 +82,17 @@ autism_annotation_tool/
     ├── video_library.py      # Local file matrix side navigation library interface
     ├── annotation_panel.py   # Dataset attribute mapping manager component
     └── processing_tab.py     # Functional controls window processing data actions
-🛠️ Installation & Execution
-1. Environment Setup
+```
+
+---
+
+## 🛠️ Installation & Execution
+
+### 1. Environment Setup
+
 It is highly recommended to isolate the project within a dedicated Python virtual environment:
 
-Bash
+```bash
 # Initialize target environment
 python -m venv .venv
 
@@ -91,77 +101,86 @@ python -m venv .venv
 
 # Activate environment (macOS / Linux terminal)
 source .venv/bin/activate
-2. Dependency Management
+```
+
+### 2. Dependency Management
+
 Install compiled framework requirements using the provided lock configuration file:
 
-Bash
+```bash
 pip install -r requirements.txt
+```
+
 Alternatively, manually configure essential bindings via standard package indexing:
 
-Bash
+```bash
 pip install PySide6 opencv-python mediapipe numpy
-3. Application Launch
-Bash
+```
+
+### 3. Application Launch
+
+```bash
 python main.py
-📖 System Operational Manual
-Loading Datasets
-Access the menu bar tool section and choose 📂 Open Folder to scan structural dataset folders.
+```
 
-Select 🎞 Load Single Video to bypass automated file indexing workflows for immediate processing.
+---
 
-Successfully identified target segments generate clean indexed reference queues within the left-hand side Video Library.
+## 📖 System Operational Manual
 
-Custom Media Controls
-Key binding / Command	Action Profile Triggered
-Spacebar	Play / Pause continuous viewport streaming
-← / →	Incremental single-frame seek debugging adjustments
-Home / End	Structural transition jumps to absolute start/end frame boundaries
-Seek Slider	Synchronous random-access drag seeking track controls
-Speed Selection Dropdown	Playback configuration changes ranging from 0.25× up to 4× normal rate
-🦴 Skeleton Visualizer Toggle	Layer toggle projecting standard framework coordinate markers over video vectors
-Creating Annotations
-Scan streaming visual structures to identify the initial timestamp of a targeted movement behavior.
+### Loading Datasets
 
-Press Mark Start to log the opening frame sequence boundaries.
+- Access the menu bar tool section and choose 📂 **Open Folder** to scan structural dataset folders.
+- Select 🎞 **Load Single Video** to bypass automated file indexing workflows for immediate processing.
+- Successfully identified target segments generate clean indexed reference queues within the left-hand side Video Library.
 
-Continue playback until the specified action behavior stops, then press Mark End.
+### Custom Media Controls
 
-Define target parameters using the dynamic input fields: Action Class, Body Part, Intensity level, and Modality type.
+| Key Binding / Command | Action |
+|-----------------------|--------|
+| `Spacebar` | Play / Pause continuous viewport streaming |
+| `←` / `→` | Incremental single-frame seek debugging adjustments |
+| `Home` / `End` | Transition jumps to absolute start/end frame boundaries |
+| Seek Slider | Synchronous random-access drag seeking track controls |
+| Speed Selection Dropdown | Playback configuration changes ranging from 0.25× up to 4× normal rate |
+| 🦴 Skeleton Visualizer Toggle | Layer toggle projecting standard framework coordinate markers over video vectors |
 
-Log custom qualitative observations into the secondary notes text area if desired.
+### Creating Annotations
 
-Commit actions using ＋ Add Annotation. Modifications automatically save locally to a structured XML document at <video_name>_annotations.xml.
+1. Scan streaming visual structures to identify the initial timestamp of a targeted movement behavior.
+2. Press **Mark Start** to log the opening frame sequence boundaries.
+3. Continue playback until the specified action behavior stops, then press **Mark End**.
+4. Define target parameters using the dynamic input fields: **Action Class**, **Body Part**, **Intensity** level, and **Modality** type.
+5. Log custom qualitative observations into the secondary notes text area if desired.
+6. Commit actions using **＋ Add Annotation**. Modifications automatically save locally to a structured XML document at `<video_name>_annotations.xml`.
 
-Video Slicing Tools (Processing Tab → 🔪 Slicing)
-Ensure the desired source file has active, saved annotation structures applied.
+### Video Slicing Tools (Processing Tab → 🔪 Slicing)
 
-Open the processing configuration sub-tab and select the Slicing panel.
+1. Ensure the desired source file has active, saved annotation structures applied.
+2. Open the processing configuration sub-tab and select the **Slicing** panel.
+3. Choose your desired system export path location (defaults to a new directory beside your source).
+4. Select **▶ Slice Annotations → Clips**. The program isolates individual behavior events, exporting categorized datasets into clean sub-folders: `dataset_processed/<action_class>/video_clip_001.mp4`.
 
-Choose your desired system export path location (defaults to a new directory beside your source).
+### Window Fragmentation Pipeline (Processing Tab → 🪟 Windowing)
 
-Select ▶ Slice Annotations → Clips. The program isolates individual behavior events, exporting categorized datasets into clean sub-folders: dataset_processed/<action_class>/video_clip_001.mp4.
+1. Configure frame sizing constraints (Default behavior bounds use 3.0s step duration configurations).
+2. Assign overlap values depending on your model constraints (Default options use a standard 1.0s sliding configuration).
+3. Set the target processing directory to point directly to the folder populated during the slicing step.
+4. Execute processing tasks using **▶ Fragment Clips → Windows**.
 
-Window Fragmentation Pipeline (Processing Tab → 🪟 Windowing)
-Configure frame sizing constraints (Default behavior bounds use 3.0s step duration configurations).
+### Keypoint Kinematic Extraction (Processing Tab → 🦴 Skeleton)
 
-Assign overlap values depending on your model constraints (Default options use a standard 1.0s sliding configuration).
+1. Select the active target data processing media record file.
+2. Select **🦴 Extract Skeleton (Current Video)**.
+3. The background multi-threaded asynchronous layer tracking workers process matrix positions without degrading main application interface performance.
+4. Extracted structural positions save next to original resources as `<video_name>_skeleton.json`. Toggle the interface player's skeleton action checkbox overlay layer to see the keypoint tracking markers.
 
-Set the target processing directory to point directly to the folder populated during the slicing step.
+---
 
-Execute processing tasks using ▶ Fragment Clips → Windows.
+## 📊 Standard Schema Specifications
 
-Keypoint Kinematic Extraction (Processing Tab → 🦴 Skeleton)
-Select the active target data processing media record file.
+### Extracted Keypoint Blueprint (`.json`)
 
-Select 🦴 Extract Skeleton (Current Video).
-
-The background multi-threaded asynchronous layer tracking workers process matrix positions without degrading main application interface performance.
-
-Extracted structural positions save next to original resources as <video_name>_skeleton.json. Toggle the interface player's skeleton action checkbox overlay layer to see the keypoint tracking markers.
-
-📊 Standard Schema Specifications
-Structural Extracted Keypoint Blueprint (.json)
-JSON
+```json
 [
   {
     "frame_id": 0,
@@ -170,8 +189,11 @@ JSON
     "visibility": [v0, v1, "...", v32]
   }
 ]
-Dataset Attribute Annotation Blueprint (.xml)
-XML
+```
+
+### Dataset Attribute Annotation Blueprint (`.xml`)
+
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <video id="video_sample_01" keyword="Behavior Capture Session">
    <height>480</height>
@@ -191,10 +213,15 @@ XML
       </behaviour>
    </behaviours>
 </video>
-🗂️ Outbound Dataset Architecture
+```
+
+---
+
+## 🗂️ Output Dataset Architecture
+
 After running videos through the full processing pipeline, files are organized into this clean format for direct training use:
 
-Plaintext
+```text
 dataset_processed/
 ├── arm_flapping/
 │   ├── video1_clip_001.mp4
@@ -206,23 +233,24 @@ dataset_processed/
 │   └── ...
 └── neutral/
     └── ...
+```
 
-# Core local tracker sidecar files saved beside source media:
+Core local tracker sidecar files saved beside source media:
+
+```text
 video1_annotations.xml
 video1_skeleton.json
-🚀 Planned Roadmap & Feature Improvements
-Advanced Multi-Person Matrix Tracking: Upgrade feature integration from simple standard Pose tracking libraries to full MediaPipe Holistic layouts for complete face, hand, and expression modeling tracking profiles.
+```
 
-Standard COCO JSON Interface Exporters: Build translation modules to seamlessly export annotation shapes into standard COCO formatting styles required by frameworks like MMPose and Detectron2.
+---
 
-Dynamic Visual Thumbnail Indexing: Introduce background frame rendering modules that display interactive hover thumbnails inside the sidebar library menu interface.
+## 🚀 Planned Roadmap & Feature Improvements
 
-Interactive Analytical Reporting Dashboards: Build visual distribution charts inside the processing suite to review class balances across active open datasets.
-
-Inter-Annotator Agreement Assessment Metrics: Build file reconciliation matching controls to cross-examine individual metadata outputs from multiple annotators and report real-time Cohen's Kappa score metrics.
-
-Hardware-Accelerated Delegate Handlers: Expose internal configurations to allow users to switch processing loads from CPU limits to GPU-accelerated pipelines.
-
-Automated Machine Learning Pre-Labeling Inference: Connect pre-trained classifications directly to the active video streaming pipe to generate automated placeholder event tags for human review.
-
-Asynchronous Framework State Management: Introduce structural tracking models built with standard QUndoStack logic to allow developers to leverage full multi-tier undo/redo states across manual asset workflows.
+- **Advanced Multi-Person Matrix Tracking:** Upgrade feature integration from simple standard Pose tracking libraries to full MediaPipe Holistic layouts for complete face, hand, and expression modeling tracking profiles.
+- **Standard COCO JSON Interface Exporters:** Build translation modules to seamlessly export annotation shapes into standard COCO formatting styles required by frameworks like MMPose and Detectron2.
+- **Dynamic Visual Thumbnail Indexing:** Introduce background frame rendering modules that display interactive hover thumbnails inside the sidebar library menu interface.
+- **Interactive Analytical Reporting Dashboards:** Build visual distribution charts inside the processing suite to review class balances across active open datasets.
+- **Inter-Annotator Agreement Assessment Metrics:** Build file reconciliation matching controls to cross-examine individual metadata outputs from multiple annotators and report real-time Cohen's Kappa score metrics.
+- **Hardware-Accelerated Delegate Handlers:** Expose internal configurations to allow users to switch processing loads from CPU limits to GPU-accelerated pipelines.
+- **Automated Machine Learning Pre-Labeling Inference:** Connect pre-trained classifications directly to the active video streaming pipe to generate automated placeholder event tags for human review.
+- **Asynchronous Framework State Management:** Introduce structural tracking models built with standard QUndoStack logic to allow developers to leverage full multi-tier undo/redo states across manual asset workflows.
