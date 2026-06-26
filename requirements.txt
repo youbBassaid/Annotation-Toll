@@ -1,0 +1,10 @@
+# PySide6 6.7.3 is the last release that loads cleanly on Win 10 build
+# 19045 with the system VC++ runtime. Newer 6.8+ / 6.11 raise
+# "DLL load failed: procedure not found" because they require a newer
+# VC++ redistributable.
+PySide6==6.7.3
+opencv-python>=4.8.0
+# Skeleton extraction backend — YOLOv8-Pose via ultralytics.
+# Replaces mediapipe (which was unstable on recent Windows + Python).
+ultralytics>=8.2
+numpy>=1.24.0,<2.0
